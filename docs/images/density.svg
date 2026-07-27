@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <!-- panel -->
+  <rect x="8" y="8" width="744" height="544" rx="14" fill="#ffffff" stroke="#e4e7ee"/>
+
+  <!-- title + subtitle -->
+  <text x="40" y="40" font-size="20" font-weight="700" fill="#1f2430">Logarithmic density transform</text>
+  <text x="40" y="62" font-size="14" fill="#6b7280">Raw 16&#8209;bit samples are converted to log&#8209;density before any processing.</text>
+
+  <!-- plot frame -->
+  <rect x="80" y="90" width="640" height="400" fill="none" stroke="#e4e7ee"/>
+
+  <!-- gridlines (quarters) -->
+  <g stroke="#eef1f6" stroke-width="1">
+    <line x1="80" y1="190" x2="720" y2="190"/>
+    <line x1="80" y1="290" x2="720" y2="290"/>
+    <line x1="80" y1="390" x2="720" y2="390"/>
+    <line x1="240" y1="90" x2="240" y2="490"/>
+    <line x1="400" y1="90" x2="400" y2="490"/>
+    <line x1="560" y1="90" x2="560" y2="490"/>
+  </g>
+
+  <!-- y ticks + labels (density) -->
+  <g font-size="11" fill="#5b6472" text-anchor="end">
+    <text x="72" y="494">0</text>
+    <text x="72" y="394">16&#8201;384</text>
+    <text x="72" y="294">32&#8201;768</text>
+    <text x="72" y="194">49&#8201;152</text>
+    <text x="72" y="94">65&#8201;535</text>
+  </g>
+  <!-- x ticks + labels (raw value) -->
+  <g font-size="11" fill="#5b6472" text-anchor="middle">
+    <text x="80" y="508">0</text>
+    <text x="240" y="508">16&#8201;384</text>
+    <text x="400" y="508">32&#8201;768</text>
+    <text x="560" y="508">49&#8201;152</text>
+    <text x="720" y="508">65&#8201;535</text>
+  </g>
+
+  <!-- axis titles -->
+  <text x="400" y="534" font-size="13" fill="#3a4150" text-anchor="middle">raw 16&#8209;bit sample &#160; v</text>
+  <text x="28" y="290" font-size="13" fill="#3a4150" text-anchor="middle" transform="rotate(-90 28 290)">density &#160; D(v)</text>
+
+  <!-- shaded region between curve and identity: shadow expansion -->
+  <path fill="#3b45b8" fill-opacity="0.09" stroke="none"
+        d="M80,490 L80.3,363.0 L80.6,338.6 L81.3,313.9 L83.2,281.0 L86.4,256.0 L92.8,231.1 L99.2,216.4 L112,198.0 L128,183.4 L144,173.0 L176,158.4 L208,148.0 L272,133.4 L336,123.0 L400,115.0 L464,108.4 L528,102.9 L592,98.0 L656,93.8 L720,90 L80,490 Z"/>
+
+  <!-- identity line (density = raw) -->
+  <line x1="80" y1="490" x2="720" y2="90" stroke="#9aa2b1" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="212" y="428" font-size="12" fill="#8a92a1" text-anchor="middle"
+        transform="rotate(-32 212 428)">identity: density = raw</text>
+
+  <!-- the D(v) curve -->
+  <path fill="none" stroke="#3b45b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+        d="M80,490 L80.3,363.0 L80.6,338.6 L81.3,313.9 L83.2,281.0 L86.4,256.0 L92.8,231.1 L99.2,216.4 L112,198.0 L128,183.4 L144,173.0 L176,158.4 L208,148.0 L272,133.4 L336,123.0 L400,115.0 L464,108.4 L528,102.9 L592,98.0 L656,93.8 L720,90"/>
+
+  <!-- readout: raw 5% -> density 73% -->
+  <g stroke="#d9820b" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.85">
+    <line x1="80" y1="198" x2="112" y2="198"/>
+    <line x1="112" y1="198" x2="112" y2="490"/>
+  </g>
+  <circle cx="112" cy="198" r="4" fill="#d9820b"/>
+  <text x="126" y="220" font-size="12" font-weight="600" fill="#b56b06">raw 5% &#8594; density 73%</text>
+
+  <!-- legend + caption block (lower-right, below the diagonal) -->
+  <g transform="translate(432,346)">
+    <line x1="0" y1="-4" x2="26" y2="-4" stroke="#3b45b8" stroke-width="3"/>
+    <text x="34" y="0" font-size="12.5" fill="#3a4150"><tspan font-weight="600">D(v)</tspan> &#8211; log density</text>
+    <line x1="0" y1="18" x2="26" y2="18" stroke="#9aa2b1" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <text x="34" y="22" font-size="12.5" fill="#3a4150">identity (density = raw)</text>
+    <text x="0" y="50" font-size="13.5" fill="#1f2430" font-family="'Cascadia Code','Consolas',monospace">D(v) = (65535 / 16) &#183; log&#8322;(v + 1)</text>
+    <text x="0" y="76" font-size="12" fill="#6b7280">The curve sits far above the diagonal:</text>
+    <text x="0" y="92" font-size="12" fill="#6b7280">a small raw value maps to a large density,</text>
+    <text x="0" y="108" font-size="12" fill="#6b7280">so shadow detail is expanded and highlights</text>
+    <text x="0" y="124" font-size="12" fill="#6b7280">compressed. Note D(0)=0 and D(65535)=65535.</text>
+  </g>
+</svg>

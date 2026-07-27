@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <rect x="8" y="8" width="704" height="454" rx="14" fill="#ffffff" stroke="#e4e7ee"/>
+  <text x="36" y="40" font-size="20" font-weight="700" fill="#1f2430">Crosstalk from clear&#8209;film tiles</text>
+  <text x="36" y="62" font-size="14" fill="#6b7280">On clear film any density variation is dye, not dust; its IR&#8593;R slope is the crosstalk.</text>
+
+  <!-- frame -->
+  <rect x="90" y="100" width="600" height="280" fill="none" stroke="#e4e7ee"/>
+
+  <!-- accepted cone: |dIR/dR| <= 0.2 (bowtie around the x-axis) -->
+  <path fill="#2f9e44" fill-opacity="0.10" stroke="none" d="M390,240 L690,128 L690,352 Z"/>
+  <path fill="#2f9e44" fill-opacity="0.10" stroke="none" d="M390,240 L90,352 L90,128 Z"/>
+  <g stroke="#57b368" stroke-width="1.2" stroke-dasharray="5 4">
+    <line x1="90" y1="352" x2="690" y2="128"/>
+    <line x1="90" y1="128" x2="690" y2="352"/>
+  </g>
+
+  <!-- centre axes -->
+  <line x1="90" y1="240" x2="690" y2="240" stroke="#c2c8d2" stroke-width="1.3"/>
+  <line x1="390" y1="100" x2="390" y2="380" stroke="#c2c8d2" stroke-width="1.3"/>
+  <text x="678" y="234" font-size="12" fill="#6b7280" text-anchor="end">&#948;R  (red&#8209;density deviation)</text>
+  <text x="398" y="114" font-size="12" fill="#6b7280">&#948;IR</text>
+
+  <!-- fit line: slope = crosstalk c -->
+  <line x1="90" y1="268" x2="690" y2="212" stroke="#3b45b8" stroke-width="2.6"/>
+
+  <!-- accepted points (in the cone) -->
+  <g fill="#3b45b8">
+    <circle cx="135" cy="254" r="4"/><circle cx="180" cy="247" r="4"/><circle cx="202.5" cy="233" r="4"/>
+    <circle cx="240" cy="256.8" r="4"/><circle cx="270" cy="237.2" r="4"/><circle cx="300" cy="265.2" r="4"/>
+    <circle cx="360" cy="242.8" r="4"/><circle cx="412.5" cy="234.4" r="4"/><circle cx="442.5" cy="248.4" r="4"/>
+    <circle cx="472.5" cy="226" r="4"/><circle cx="502.5" cy="237.2" r="4"/><circle cx="532.5" cy="198" r="4"/>
+    <circle cx="562.5" cy="228.8" r="4"/><circle cx="622.5" cy="217.6" r="4"/><circle cx="652.5" cy="212" r="4"/>
+  </g>
+  <!-- rejected points (ratio out of range) -->
+  <g fill="#ffffff" stroke="#9aa2b1" stroke-width="1.6">
+    <circle cx="330" cy="209.2" r="4"/><circle cx="592.5" cy="153.2" r="4"/>
+  </g>
+
+  <!-- labels -->
+  <text x="628" y="196" font-size="12" font-weight="600" fill="#3b45b8" text-anchor="end">slope = crosstalk c</text>
+  <text x="612" y="300" font-size="12" fill="#2f8a3e" text-anchor="middle">|&#948;IR / &#948;R| &#8804; 0.2  &#8594; kept</text>
+  <text x="600" y="145" font-size="11.5" fill="#8a92a1" text-anchor="middle">out of range &#8594; rejected</text>
+  <line x1="595" y1="150" x2="592.5" y2="157" stroke="#9aa2b1" stroke-width="1"/>
+
+  <!-- formula -->
+  <text x="108" y="352" font-size="12.5" fill="#1f2430" font-family="'Cascadia Code','Consolas',monospace">c = &#931; (&#948;IR/&#948;R)&#183;w&#8399; / &#931; w&#8399;,  w&#8399; = &#948;R&#178;&#183;(&#931;IR)&#178;</text>
+</svg>

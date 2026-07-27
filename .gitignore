@@ -1,0 +1,43 @@
+# ── openICE .gitignore ───────────────────────────────────────────────────────
+# Tracked: source (src/, src_C/, *.cs *.c *.h), build scripts, docs/ (incl. its
+# .png/.svg assets), README, LICENSE. Ignored: build outputs and the large,
+# regenerable scan data.
+
+# ── Build artifacts ──────────────────────────────────────────────────────────
+# C# (csc) and C (gcc/mingw) outputs. openice.exe / openice_gui.exe ship via the
+# GitHub Releases tab, not the repo.
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.o
+*.obj
+# MSBuild output dirs (harmless if you stay on raw csc)
+bin/
+obj/
+
+# ── Scan data & ICE outputs (large, regenerable) ─────────────────────────────
+# The data/ folder is test captures — postlut / lowres / iced / *.openice.dng,
+# hundreds of MB to ~1 GB each. Plus stray DNGs, raw captures, give-up maps,
+# and core/memory dumps anywhere in the tree.
+data/
+attic/
+*.dng
+*.raw
+*.pgm
+*.dump
+*.bin
+
+# ...but never ignore the documentation assets, whatever their extension.
+!docs/
+!docs/**
+
+# ── Editor / OS cruft ────────────────────────────────────────────────────────
+.vs/
+.vscode/
+*.user
+*.suo
+Thumbs.db
+.DS_Store
