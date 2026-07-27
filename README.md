@@ -1,5 +1,7 @@
 # openICE
 
+![](docs/images/teaser.gif)
+
 An open reimplementation of Applied Science Fiction's **Digital ICE** infrared dust-and-scratch removal in C#. It reads an **RGBI DNG** and writes a **clean RGB DNG**.
 Based on the Nikon Coolscan LS-5000/9000 profile in Nikon Scan 4. 
 

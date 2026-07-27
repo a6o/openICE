@@ -95,55 +95,59 @@ public class OpenIceGui : Form
         removeBtn = MakeButton("Remove Selected", (s, e) => RemoveSelected());
         clearBtn = MakeButton("Clear List", (s, e) => { if (!running) list.Items.Clear(); });
 
-        var qual = new GroupBox { Text = "Quality", Width = 206, Height = 72, Margin = new Padding(0, 4, 0, 6) };
-        rNormal = new RadioButton { Text = "Normal", Location = new Point(12, 20), AutoSize = true, Checked = true };
-        rFine = new RadioButton { Text = "Fine", Location = new Point(12, 44), AutoSize = true };
-        qual.Controls.Add(rNormal); qual.Controls.Add(rFine);
+        var qual = new GroupBox { Text = "Quality", Width = 206, Height = 70, Margin = new Padding(0, 0, 0, 6) };
+        rFine = new RadioButton { Text = "Fine", Location = new Point(12, 36), AutoSize = true };
+        rNormal = new RadioButton { Text = "Normal", Location = new Point(12, 12), AutoSize = true, Checked = true };
+        qual.Controls.Add(rFine); qual.Controls.Add(rNormal); 
 
-        var scan = new GroupBox { Text = "Scanner", Width = 206, Height = 96, Margin = new Padding(0, 0, 0, 6) };
-        k8 = new RadioButton { Text = "LS-5000  (kind 8)", Location = new Point(12, 20), AutoSize = true, Checked = true };
-        k7 = new RadioButton { Text = "LS-9000  (kind 7)", Location = new Point(12, 44), AutoSize = true };
-        k9 = new RadioButton { Text = "LS-50  (kind 9)", Location = new Point(12, 68), AutoSize = true };
-        scan.Controls.Add(k8); scan.Controls.Add(k7); scan.Controls.Add(k9);
+        var scan = new GroupBox { Text = "ICE type", Width = 206, Height = 96, Margin = new Padding(0, 0, 0, 6) };
+        k8 = new RadioButton { Text = "LS-5000  (kind 8)", Location = new Point(12, 12), AutoSize = true, Checked = true };
+        k7 = new RadioButton { Text = "LS-9000  (kind 7)", Location = new Point(12, 36), AutoSize = true };
+        k9 = new RadioButton { Text = "LS-50  (kind 9)", Location = new Point(12, 60), AutoSize = true };
+        scan.Controls.Add(k9); scan.Controls.Add(k7); scan.Controls.Add(k8); 
 
         // Parallel: how many images to reconstruct at once. Each image runs on its own thread with its own buffers,
         // so N-at-a-time roughly scales throughput with cores; more also means more RAM (~0.3 GB per in-flight 24 MP
         // frame). 4 is a good default; drop to 1 on a low-memory machine, raise to 8/16 on a many-core one.
-        var par = new GroupBox { Text = "Parallel", Width = 206, Height = 56, Margin = new Padding(0, 0, 0, 6) };
-        cbThreads = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(12, 20), Width = 56 };
+        var par = new GroupBox { Text = "Parallel", Width = 206, Height = 60, Margin = new Padding(0, 0, 0, 6) };
+        cbThreads = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(12, 24), Width = 56 };
         cbThreads.Items.AddRange(new object[] { "1", "4", "8", "16" });
         cbThreads.SelectedIndex = 1;   // "4" -- the default
-        var lPar = new Label { Text = "images at a time", Location = new Point(76, 23), AutoSize = true, ForeColor = SystemColors.GrayText };
+        var lPar = new Label { Text = "images at a time", Location = new Point(76, 27), AutoSize = true, ForeColor = SystemColors.GrayText };
         par.Controls.Add(cbThreads); par.Controls.Add(lPar);
 
         // IR clip: optionally remap the IR channel's [min,max] window onto the full 0..65535 range before ICE, on
         // every file in the batch. Handy for narrow, low-contrast IR (e.g. Epson V600 flatbed). Off by default =
         // no-op. The window is entered as raw 16-bit IR levels; use the Visualize tab's histogram to pick them.
-        var irGroup = new GroupBox { Text = "IR", Width = 206, Height = 104, Margin = new Padding(0, 0, 0, 6) };
-        cbClip = new CheckBox { Text = "Clip IR", Location = new Point(12, 20), AutoSize = true };
-        var lClipLo = new Label { Text = "min", Location = new Point(12, 51), AutoSize = true, ForeColor = SystemColors.GrayText };
-        numClipLo = new NumericUpDown { Location = new Point(44, 48), Width = 58, Minimum = 0, Maximum = 65535, Increment = 256, Value = 0, Enabled = false };
-        var lClipHi = new Label { Text = "max", Location = new Point(110, 51), AutoSize = true, ForeColor = SystemColors.GrayText };
-        numClipHi = new NumericUpDown { Location = new Point(142, 48), Width = 58, Minimum = 0, Maximum = 65535, Increment = 256, Value = 65535, Enabled = false };
-        var irHint = new Label { Text = "Clip IR for non-Coolscan scanners", Location = new Point(12, 76), Size = new Size(188, 22), ForeColor = SystemColors.GrayText };
+        var irGroup = new GroupBox { Text = "IR", Width = 206, Height = 110, Margin = new Padding(0, 0, 0, 6) };
+        cbClip = new CheckBox { Text = "Clip IR", Location = new Point(12, 24), AutoSize = true };
+        var lClipLo = new Label { Text = "min", Location = new Point(12, 55), AutoSize = true, ForeColor = SystemColors.GrayText };
+        numClipLo = new NumericUpDown { Location = new Point(44, 52), Width = 58, Minimum = 0, Maximum = 65535, Increment = 256, Value = 0, Enabled = false };
+        var lClipHi = new Label { Text = "max", Location = new Point(110, 55), AutoSize = true, ForeColor = SystemColors.GrayText };
+        numClipHi = new NumericUpDown { Location = new Point(142, 52), Width = 58, Minimum = 0, Maximum = 65535, Increment = 256, Value = 65535, Enabled = false };
+        var irHint = new Label { Text = "Clip IR for non-Coolscan scanners", Location = new Point(12, 80), Size = new Size(188, 22), ForeColor = SystemColors.GrayText, Font = new Font("Segoe UI", 9f, FontStyle.Italic) };
         cbClip.CheckedChanged += (s, e) => { numClipLo.Enabled = numClipHi.Enabled = cbClip.Checked; };
         irGroup.Controls.Add(cbClip); irGroup.Controls.Add(lClipLo); irGroup.Controls.Add(numClipLo);
         irGroup.Controls.Add(lClipHi); irGroup.Controls.Add(numClipHi); irGroup.Controls.Add(irHint);
 
         // Output naming: either drop results in a subfolder, or keep them in the same folder with a distinct name
         // (a prefix and/or suffix, so the .dng never overwrites the source).
-        // Absolute positions with generous vertical gaps -- AutoSize radios grow a little more than the layout at
-        // high DPI, so the "Same folder" row needs clearance above the prefix/suffix row or it overlaps it.
-        var outGroup = new GroupBox { Text = "Output", Width = 206, Height = 156, Margin = new Padding(0, 0, 0, 6) };
-        rSubfolder = new RadioButton { Text = "Subfolder:", Location = new Point(12, 22), AutoSize = true, Checked = true };
-        tbSubfolder = new TextBox { Text = "iced", Location = new Point(96, 20), Width = 96 };
-        rSameFolder = new RadioButton { Text = "Same folder", Location = new Point(12, 54), AutoSize = true };
-        var lPre = new Label { Text = "prefix", Location = new Point(30, 90), AutoSize = true, ForeColor = SystemColors.GrayText };
-        tbPrefix = new TextBox { Text = "", Location = new Point(30, 108), Width = 72, Enabled = false };
-        var lSuf = new Label { Text = "suffix", Location = new Point(116, 90), AutoSize = true, ForeColor = SystemColors.GrayText };
-        tbSuffix = new TextBox { Text = "_ice", Location = new Point(116, 108), Width = 72, Enabled = false };
-        outGroup.Controls.Add(rSubfolder); outGroup.Controls.Add(tbSubfolder); outGroup.Controls.Add(rSameFolder);
-        outGroup.Controls.Add(lPre); outGroup.Controls.Add(tbPrefix); outGroup.Controls.Add(lSuf); outGroup.Controls.Add(tbSuffix);
+        // Laid out with a top-down FlowLayoutPanel rather than absolute positions: the flow stacks each control
+        // below the previous with margins, so nothing can overlap and the caption inset is honored at any DPI.
+        // (Absolute positioning kept letting the AutoSize "Subfolder:" radio cover the textbox at 200% scaling.)
+        var outGroup = new GroupBox { Text = "Output", Width = 206, Height = 188, Margin = new Padding(0, 0, 0, 6) };
+        var outFlow = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.TopDown,
+                                            WrapContents = false, Padding = new Padding(8, 2, 8, 2) };
+        rSubfolder = new RadioButton { Text = "Subfolder:", AutoSize = true, Checked = true, Margin = new Padding(2, 2, 0, 0) };
+        tbSubfolder = new TextBox { Text = "iced", Width = 168, Margin = new Padding(18, 2, 0, 10) };
+        rSameFolder = new RadioButton { Text = "Same folder", AutoSize = true, Margin = new Padding(2, 0, 0, 2) };
+        var lPre = new Label { Text = "prefix", AutoSize = true, ForeColor = SystemColors.GrayText, Margin = new Padding(18, 6, 0, 0) };
+        tbPrefix = new TextBox { Text = "", Width = 168, Enabled = false, Margin = new Padding(18, 0, 0, 6) };
+        var lSuf = new Label { Text = "suffix", AutoSize = true, ForeColor = SystemColors.GrayText, Margin = new Padding(18, 0, 0, 0) };
+        tbSuffix = new TextBox { Text = "_ice", Width = 168, Enabled = false, Margin = new Padding(18, 0, 0, 0) };
+        outFlow.Controls.Add(rSubfolder); outFlow.Controls.Add(tbSubfolder); outFlow.Controls.Add(rSameFolder);
+        outFlow.Controls.Add(lPre); outFlow.Controls.Add(tbPrefix); outFlow.Controls.Add(lSuf); outFlow.Controls.Add(tbSuffix);
+        outGroup.Controls.Add(outFlow);
         EventHandler outMode = (s, e) =>
         {
             tbSubfolder.Enabled = rSubfolder.Checked;
@@ -166,9 +170,12 @@ public class OpenIceGui : Form
         var settings = new FlowLayoutPanel
         {
             Dock = DockStyle.Fill, FlowDirection = FlowDirection.TopDown, WrapContents = false,
-            AutoScroll = true, Padding = new Padding(12, 12, 12, 6)
+            AutoScroll = true, Padding = new Padding(12, 12, 12, 12)
         };
-        foreach (var c in new Control[] { addBtn, removeBtn, clearBtn, qual, scan, par, irGroup, outGroup, outExample }) settings.Controls.Add(c);
+        // trailing spacer: FlowLayoutPanel's AutoScroll can stop one item short, so a small spacer after the last
+        // real control (outExample) guarantees the whole list -- including that caption -- scrolls into view.
+        var scrollPad = new Panel { Width = 1, Height = 1, Margin = new Padding(0, 0, 0, 12) };
+        foreach (var c in new Control[] { addBtn, removeBtn, clearBtn, qual, scan, par, irGroup, outGroup, outExample, scrollPad }) settings.Controls.Add(c);
         UpdateOutputExample();
 
         iceBtn = new Button
@@ -251,7 +258,7 @@ public class OpenIceGui : Form
         {
             Text = "About openICE", Font = new Font("Segoe UI", 9f),
             FormBorderStyle = FormBorderStyle.FixedDialog, StartPosition = FormStartPosition.CenterParent,
-            MaximizeBox = false, MinimizeBox = false, ShowInTaskbar = false, ClientSize = new Size(468, 292)
+            MaximizeBox = false, MinimizeBox = false, ShowInTaskbar = false, ClientSize = new Size(468, 320)
         })
         {
             dlg.SuspendLayout();
@@ -261,7 +268,7 @@ public class OpenIceGui : Form
                                   ForeColor = SystemColors.GrayText };
             var body = new Label
             {
-                Location = new Point(26, 96), Size = new Size(416, 148), AutoSize = false,
+                Location = new Point(26, 96), Size = new Size(416, 140), AutoSize = false,
                 Text =
                     "An open reimplementation of Digital ICE " +
                     "infrared dust-and-scratch removal for film scans. It reads an RGBI DNG and writes " +
@@ -270,13 +277,22 @@ public class OpenIceGui : Form
                     "Free software under the GNU General Public License v3.0.\r\n" +
                     "Copyright © 2026 <a6o>."
             };
+            var repo = new LinkLabel
+            {
+                Text = "https://github.com/a6o/openICE", AutoSize = true, Location = new Point(26, 244)
+            };
+            repo.LinkClicked += (s, e) =>
+            {
+                try { System.Diagnostics.Process.Start("https://github.com/a6o/openICE"); }
+                catch (Exception ex) { MessageBox.Show(dlg, ex.Message, "openICE"); }
+            };
             var ok = new Button
             {
                 Text = "OK", DialogResult = DialogResult.OK, Size = new Size(88, 28),
                 Location = new Point(dlg.ClientSize.Width - 110, dlg.ClientSize.Height - 40),
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Right
             };
-            dlg.Controls.Add(title); dlg.Controls.Add(ver); dlg.Controls.Add(body); dlg.Controls.Add(ok);
+            dlg.Controls.Add(title); dlg.Controls.Add(ver); dlg.Controls.Add(body); dlg.Controls.Add(repo); dlg.Controls.Add(ok);
             dlg.AutoScaleDimensions = new SizeF(7f, 15f);   // baseline set AFTER the controls are added, then scale
             dlg.AutoScaleMode = AutoScaleMode.Font;
             dlg.ResumeLayout(false);
@@ -548,29 +564,31 @@ public class OpenIceGui : Form
     // ---- Single tab: run one image and show an original/ICE wipe comparison ----
     Control BuildSingleTab()
     {
-        sOpenBtn = new Button { Text = "Open Image…", AutoSize = true, Margin = new Padding(0, 0, 6, 0) };
+        int btnH = 26;   // toolbar button height -- one knob for all four buttons (scales with DPI)
+        sOpenBtn = new Button { Text = "Open Image…", AutoSize = false, Size = new Size(112, btnH), Margin = new Padding(0, 0, 6, 0) };
         sOpenBtn.Click += (s, e) => OpenSingle();
-        sFine = new CheckBox { Text = "Fine", AutoSize = true, Margin = new Padding(6, 6, 6, 0) };
-        var kindLbl = new Label { Text = "Scanner:", AutoSize = true, Margin = new Padding(6, 8, 2, 0) };
+        sFine = new CheckBox { Text = "Fine", AutoSize = true, Margin = new Padding(6, 4, 6, 0) };
+        var kindLbl = new Label { Text = "ICE type:", AutoSize = true, Margin = new Padding(6, 4, 2, 0) };
         sKind = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Width = 150, Margin = new Padding(0, 4, 6, 0) };
         sKind.Items.AddRange(new object[] { "LS-5000 (kind 8)", "LS-9000 (kind 7)", "LS-50 (kind 9)" });
         sKind.SelectedIndex = 0;
-        sRunBtn = new Button { Text = "Run ICE", AutoSize = true, Margin = new Padding(6, 0, 6, 0) };
+        sRunBtn = new Button { Text = "Run ICE", AutoSize = false, Size = new Size(84, btnH), Margin = new Padding(6, 0, 6, 0) };
         sRunBtn.Click += (s, e) => RunSingle();
-        sIrBtn = new Button { Text = "IR", AutoSize = true, Margin = new Padding(6, 0, 6, 0) };
+        sIrBtn = new Button { Text = "IR", AutoSize = false, Size = new Size(44, btnH), Margin = new Padding(6, 0, 6, 0) };
         sIrBtn.Click += (s, e) => ToggleIr();
-        sSaveBtn = new Button { Text = "Save…", AutoSize = true, Margin = new Padding(6, 0, 6, 0), Enabled = false };
+        sSaveBtn = new Button { Text = "Save…", AutoSize = false, Size = new Size(72, btnH), Margin = new Padding(6, 0, 6, 0), Enabled = false };
         sSaveBtn.Click += (s, e) => SaveSingle();
-        sProgress = new ProgressBar { Width = 160, Height = 18, Margin = new Padding(6, 4, 6, 0), Maximum = 100 };
-        sStatus = new Label { AutoSize = true, ForeColor = SystemColors.GrayText, Margin = new Padding(6, 8, 0, 0), Text = "Open an RGBI DNG to preview." };
+        sProgress = new ProgressBar { Dock = DockStyle.Right, Width = 180, Maximum = 100 };
+        sStatus = new Label { Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft, ForeColor = SystemColors.GrayText, Padding = new Padding(8, 0, 6, 0), Text = "Open an RGBI DNG to preview." };
 
-        // toolbar -- Dock=Top + AutoSize so the buttons never clip at high DPI (a fixed-height row can leave the
-        // DPI-scaled buttons taller than the row). "Clip IR" lives here; the histogram below only shows when it's on.
+        // toolbar (buttons only) -- AutoSize keeps it exactly one row tall at any DPI; WrapContents off keeps it on
+        // one line. Progress + status live on their own strip at the bottom (added to the host below), so the wide
+        // status text can't push the toolbar to a second line. "Clip IR" lives here.
         var bar = new FlowLayoutPanel { Dock = DockStyle.Top, WrapContents = false, AutoSize = true,
-                                        AutoSizeMode = AutoSizeMode.GrowAndShrink, Padding = new Padding(8, 6, 8, 4) };
-        sStretch = new CheckBox { Text = "Clip IR", AutoSize = true, Margin = new Padding(12, 6, 6, 0) };
+                                        AutoSizeMode = AutoSizeMode.GrowAndShrink, Padding = new Padding(8, 5, 8, 5) };
+        sStretch = new CheckBox { Text = "Clip IR", AutoSize = true, Margin = new Padding(12, 4, 6, 0) };
         sStretch.CheckedChanged += (s, e) => ApplyClipState();
-        foreach (var c in new Control[] { sOpenBtn, sFine, kindLbl, sKind, sRunBtn, sIrBtn, sSaveBtn, sStretch, sProgress, sStatus })
+        foreach (var c in new Control[] { sOpenBtn, sFine, kindLbl, sKind, sRunBtn, sIrBtn, sSaveBtn, sStretch })
             bar.Controls.Add(c);
 
         canvas = new CompareCanvas { Dock = DockStyle.Fill, AllowDrop = true };
@@ -592,10 +610,14 @@ public class OpenIceGui : Form
         sLevPanel.Controls.Add(sLevels);   // Fill -- added first
         sLevPanel.Controls.Add(levBar);    // Top -- the Auto/Full row sits above the histogram
 
-        // Dock assembly (top -> bottom): toolbar, IR levels (collapsible), then the comparison canvas fills the rest.
-        // Add the Fill control first, then the Top-docked ones (last added docks outermost/topmost).
+        // Dock assembly (top -> bottom): toolbar, IR levels (collapsible), comparison canvas (fills), status strip.
+        // Add the Fill control first, then the edge-docked ones (last added docks outermost).
+        var sBottom = new Panel { Dock = DockStyle.Bottom, Height = 24 };
+        sBottom.Controls.Add(sStatus);     // Fill -- added first
+        sBottom.Controls.Add(sProgress);   // Right
         var host = new Panel { Dock = DockStyle.Fill };
         host.Controls.Add(canvas);
+        host.Controls.Add(sBottom);
         host.Controls.Add(sLevPanel);
         host.Controls.Add(bar);
         ApplyClipState();
@@ -1052,7 +1074,6 @@ class IrLevels : Panel
     int drag;                   // 0 = none, 1 = lo handle, 2 = hi handle
     bool interactive;           // handles editable/visible only while "Clip IR" is on
     const int Gap = 512;        // minimum lo..hi separation
-    const int Foot = 15;        // pixels reserved at the bottom for the value labels
 
     public int Lo { get { return lo; } }
     public int Hi { get { return hi; } }
@@ -1097,7 +1118,8 @@ class IrLevels : Panel
 
     protected override void OnPaint(PaintEventArgs e)
     {
-        var g = e.Graphics; int W = ClientSize.Width, H = ClientSize.Height, plot = H - Foot;
+        var g = e.Graphics; int W = ClientSize.Width, H = ClientSize.Height;
+        int plot = H - (Font.Height + 4);   // reserve room for the value labels below -- scales with the DPI-scaled font
         if (hist == null)
         {
             TextRenderer.DrawText(g, "no IR channel", Font, ClientRectangle, Color.Gray,
