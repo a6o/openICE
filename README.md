@@ -1,6 +1,10 @@
 # openICE
 
-![](docs/images/teaser.gif)
+[![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
+[![Download](https://img.shields.io/badge/download-Releases-brightgreen.svg)](../../releases/latest)
+![Platform: Windows x64](https://img.shields.io/badge/platform-Windows%20x64-0078D6.svg)
+
+![Digital ICE dust-and-scratch removal, before and after](docs/images/teaser.gif)
 
 An open reimplementation of Applied Science Fiction's **Digital ICE** infrared dust-and-scratch removal in C#. It reads an **RGBI DNG** and writes a **clean RGB DNG**.
 Based on the Nikon Coolscan LS-5000/9000 profile in Nikon Scan 4. 
@@ -44,19 +48,25 @@ Download the latest `openice.exe` from this repo's **Releases** tab.
 
 ## Build
 
-### GUI
+Both builds use the C# compiler **`csc`** from the .NET Framework — it ships with Windows at
+`C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe`. Add that folder to `PATH` (or call `csc` by its
+full path), and run the commands from the `openICE` directory.
+
+### CLI — `openice.exe`
+Every source **except** the WinForms front-end (`openice_gui.cs`):
 ```powershell
-csc /platform:x64 /target:winexe /main:OpenIceGui /out:openice_gui.exe ^
-    /r:System.Windows.Forms.dll /r:System.Drawing.dll ^
-    src\openice_gui.cs src\openice.cs src\IcePump.cs src\IceSetup.cs src\IceRow.cs src\IceFront.cs ^
+csc /platform:x64 /optimize+ /out:openice.exe `
+    src\openice.cs src\IcePump.cs src\IceSetup.cs src\IceRow.cs src\IceFront.cs `
     src\IceBack.cs src\IceCore.cs src\IceBuffers.cs src\IceAnalyze.cs src\dng.cs
 ```
 
-### CLI
+### GUI — `openice_gui.exe`
+Adds the WinForms front-end and the DPI-awareness manifest (`src\*.cs` picks up every file; `/main` selects
+the GUI entry point):
 ```powershell
-csc /platform:x64 /optimize+ /out:openice.exe ^
-    src\openice.cs src\IcePump.cs src\IceSetup.cs src\IceRow.cs src\IceFront.cs ^
-    src\IceBack.cs src\IceCore.cs src\IceBuffers.cs src\IceAnalyze.cs src\dng.cs
+csc /platform:x64 /target:winexe /main:OpenIceGui /out:openice_gui.exe `
+    /r:System.Windows.Forms.dll /r:System.Drawing.dll `
+    /win32manifest:src\app.manifest src\*.cs
 ```
 
 ## Nikon Scan 4 vs openICE
@@ -88,23 +98,22 @@ src_C/           the byte-exact C port of src. See src_C/README.md
 
 ```mermaid
 flowchart LR
-    IN(["RGBI DNG"]) --> SET["Setup<br/>density LUT · geometry<br/>constants · ring buffers"]
-    SET --> SA
+  RAW(["<b>RGBI scan</b>"]) --> D["<b>§1 · density convert</b><br/>RGBI → log-density d"]
+  LOW(["<b>low-res prescan</b>"]) --> CAL["<b>§2 · calibration</b><br/>get clean IR-base color<br/>and how much red bleeds IR"]
+  D -. "d" .-> G["<b>§3 · IR gate g</b><br/>strip the dye crosstalk<br/>isolate dust"]
+  CAL -. "c, IR_ref" .-> G
+  G -. "g" .-> W["<b>§4 · clean-confidence weight</b><br/>w(g)∈[0,1]"]
+  W --> DEC{"<b>§5 · give up<br/>or reconstruct?</b>"}
+  DEC -->|"already clean / unreconstructable"| CP["<b>give up</b><br/>copy input through"]
+  DEC -->|reconstruct| P["<b>§6 · convolution pyramids</b><br/>calculate with surrounding pixel values"]
+  P -. "P, C, L" .-> CORE["<b>§7 · reconstruction core</b><br/>reconstruct pixel with clean neighboring pixels"]
+  CORE --> DI["<b>§8 · dither</b><br/>add film grain on reconstructed pixels"]
+  DI --> O["<b>§9 · output</b><br/>density → 16-bit RGB"]
+  CP --> O
+  O --> RES(["<b>clean RGB</b>"])
 
-    LOW(["Low-Res Scan"]) --> CAL["Calibration"]
-    CAL -. once .-> ING
-
-    subgraph per_input_row [Per input row]
-      direction LR
-      SA["Slot Advance<br/>advance the ring window"] --> ING["Ingest<br/>RGB → density planes<br/>IR → dust gate"]
-      ING --> FR["Front Half<br/>weight · gate-history<br/>products · mask + pyramid<br/>transform"]
-      FR --> BK["Back Half<br/>trigger → v/L-build<br/>core → dither"]
-      BK --> OC["Output Convert<br/>density → 16-bit"]
-    end
-    OC --> OUT(["Clean RGB DNG"])
-
-    classDef calib fill:#dcfce7,stroke:#16a34a,color:#14532d;
-    class LOW,CAL calib;
+  classDef calib fill:#dcfce7,stroke:#16a34a,color:#14532d;
+  class LOW,CAL calib;
 ```
 
 See [Pipeline](docs/pipeline.md)
@@ -122,7 +131,7 @@ Nikon Scan's Digital ICE requires an initial low-res scan to calculate three cal
 However, we found that using a down-sampled image of the main scan still gives visually good performance. By default, openICE uses a down-sampled image as the low-res scan. See [VALIDATION.md](docs/VALIDATION.md).
 
 ## TODO
-- MacOS support
+- macOS support
 
 ## License
 
@@ -131,3 +140,20 @@ may use, study, modify, and redistribute it; if you distribute a modified versio
 carry its source.
 
 Copyright (C) 2026 &lt;a6o&gt;
+
+## Trademarks & Disclaimer
+
+openICE is an independent, unofficial reimplementation created for interoperability and research. It is **not
+affiliated with, endorsed by, or sponsored by** Nikon, Kodak, Applied Science Fiction, or any other company whose
+products it interoperates with.
+
+All product names, logos, and brands are the property of their respective owners:
+
+- **Digital ICE** is a trademark of Eastman Kodak Company (the technology was originally developed by Applied
+  Science Fiction).
+- **Nikon**, **Coolscan**, and **Nikon Scan** are trademarks of Nikon Corporation.
+- **VueScan** is a trademark of Hamrick Software; **SilverFast** is a trademark of LaserSoft Imaging AG.
+- **Adobe** and **DNG** are trademarks of Adobe Inc.
+
+These names are used only for identification and descriptive purposes (nominative fair use) and do not imply any
+association with, or endorsement by, the trademark holders.

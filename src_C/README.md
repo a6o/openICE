@@ -39,20 +39,17 @@ a last-bit gap the original doesn't. Same algorithm, different arithmetic model.
 
 ## Build
 
-Needs a **32-bit MinGW gcc**. `build.ps1` puts `C:\msys64\mingw32\bin` on `PATH` for the current run.
+Needs a **32-bit MinGW gcc** (e.g. MSYS2's `mingw32` toolchain). Put its `bin` on `PATH`
+(`C:\msys64\mingw32\bin` in a stock MSYS2 install), then from `openICE\src_C`:
 
 ```powershell
-cd openICE\src_C
-.\build.ps1            # -> openice.exe  (+ pixdiff.exe)
-.\build.ps1 -verify    # also runs the nodither self-test against a reference
-```
-
-The exact command it runs:
-
-```
-gcc -m32 -O2 -msse2 -mfpmath=387 -o openice.exe \
-    openice.c dng.c ice_setup.c ice_row.c ice_buffers.c ice_front.c ice_back.c \
+# openice.exe  --  the -m32 / -mfpmath=387 flags are mandatory for the byte-exact x87 match
+gcc -m32 -O2 -msse2 -mfpmath=387 -o openice.exe `
+    openice.c dng.c ice_setup.c ice_row.c ice_buffers.c ice_front.c ice_back.c `
     ice_core.c ice_analyze.c ice_pump.c ice_streamcalib.c -lm
+
+# pixdiff.exe  --  the byte-diff tool used by "Verify it yourself" below
+gcc -m32 -O2 -msse2 -mfpmath=sse -o pixdiff.exe pixdiff.c dng.c -lm
 ```
 
 ## Usage
@@ -107,7 +104,7 @@ register spills and silently re-introduce deltas even if the arithmetic looks un
 
 ## Verify it yourself
 
-`pixdiff.exe` (built alongside `openice.exe`) reports the differing-pixel count. Reference frames live in
+`pixdiff.exe` (built in the Build step above) reports the differing-pixel count. Reference frames live in
 [`../data/`](../data) — `*_f01_{postlut,lowres,iced}.dng` for the LS-5000 frames and `nk9000_f01_*` for the
 LS-9000:
 
@@ -141,8 +138,7 @@ LS-9000:
 | `dng.c` / `dng.h` | DNG read/write |
 | `ice.h` | shared config offsets, `IceState`, inline helpers, `real_t` (no C# counterpart) |
 | `ice_streamcalib.c` | streaming per-row calibration estimator (no C# counterpart) |
-| `pixdiff.c` | the byte-diff tool used by `build.ps1 -verify` |
-| `build.ps1` | build + optional nodither self-test |
+| `pixdiff.c` | the byte-diff tool used by the "Verify it yourself" step |
 
 ## Relationship to `../src/` (C#)
 
