@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
   <rect x="8" y="8" width="704" height="454" rx="14" fill="#ffffff" stroke="#e4e7ee"/>
-  <text x="36" y="40" font-size="20" font-weight="700" fill="#1f2430">Crosstalk from clear&#8209;film tiles</text>
+  <text x="36" y="40" font-size="20" font-weight="700" fill="#1f2430">Crosstalk from clear-film tiles</text>
   <text x="36" y="62" font-size="14" fill="#6b7280">On clear film any density variation is dye, not dust; its IR&#8593;R slope is the crosstalk.</text>
 
   <!-- frame -->
@@ -43,5 +43,5 @@
   <line x1="595" y1="150" x2="592.5" y2="157" stroke="#9aa2b1" stroke-width="1"/>
 
   <!-- formula -->
-  <text x="108" y="352" font-size="12.5" fill="#1f2430" font-family="'Cascadia Code','Consolas',monospace">c = &#931; (&#948;IR/&#948;R)&#183;w&#8399; / &#931; w&#8399;,  w&#8399; = &#948;R&#178;&#183;(&#931;IR)&#178;</text>
+  <text x="108" y="352" font-size="12.5" fill="#1f2430" font-family="'Cascadia Code','Consolas',monospace">c = &#931; (&#948;IR/&#948;R)&#183;w<tspan baseline-shift="sub" font-size="9">q</tspan> / &#931; w<tspan baseline-shift="sub" font-size="9">q</tspan>,  w<tspan baseline-shift="sub" font-size="9">q</tspan> = &#948;R&#178;&#183;(&#931;IR)&#178;</text>
 </svg>

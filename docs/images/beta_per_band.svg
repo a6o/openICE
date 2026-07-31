@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <rect x="8" y="8" width="704" height="384" rx="14" fill="#ffffff" stroke="#e4e7ee"/>
+  <text x="36" y="40" font-size="20" font-weight="700" fill="#1f2430">How [&#946;<tspan baseline-shift="sub" font-size="12">lo,&#8467;</tspan>, &#946;<tspan baseline-shift="sub" font-size="12">hi,&#8467;</tspan>] changes with band &#8467;</text>
+  <text x="36" y="62" font-size="13.5" fill="#6b7280">Same 5&#8209;point min/max, but each band reads the gate detail P<tspan baseline-shift="sub" font-size="9">&#8467;</tspan> &#8722; P<tspan baseline-shift="sub" font-size="9">&#8467;&#8722;1</tspan> at its own scale.</text>
+
+  <!-- column headers -->
+  <text x="275" y="92" font-size="12" font-weight="600" fill="#6b7280" text-anchor="middle">gate detail at scale &#8467;</text>
+  <text x="555" y="92" font-size="12" font-weight="600" fill="#6b7280" text-anchor="middle">resulting band [&#946;<tspan baseline-shift="sub" font-size="8">lo,&#8467;</tspan>, &#946;<tspan baseline-shift="sub" font-size="8">hi,&#8467;</tspan>]</text>
+  <!-- legend -->
+  <circle cx="606" cy="70" r="4" fill="#d9820b"/><text x="614" y="74" font-size="10.5" fill="#8a92a1">&#946;<tspan baseline-shift="sub" font-size="7">lo,&#8467;</tspan>=min</text>
+  <circle cx="666" cy="70" r="4" fill="#1f9d6b"/><text x="674" y="74" font-size="10.5" fill="#8a92a1">&#946;<tspan baseline-shift="sub" font-size="7">hi,&#8467;</tspan>=max</text>
+
+  <!-- ============ row l=1 (coarse) ============ -->
+  <text x="40" y="134" font-size="15" font-weight="700" fill="#1f2430">&#8467; = 1</text>
+  <text x="40" y="152" font-size="12.5" fill="#3a4150">P&#8321; &#8722; P&#8320;</text>
+  <text x="40" y="168" font-size="11" fill="#8a92a1">coarse</text>
+  <rect x="255" y="112" width="40" height="56" fill="#dfe7ff" fill-opacity="0.5"/>
+  <line x1="175" y1="140" x2="375" y2="140" stroke="#e4e7ee" stroke-width="1"/>
+  <path fill="none" stroke="#3b45b8" stroke-width="2.5" d="M175,153 Q275,116 375,145"/>
+  <!-- number line -->
+  <line x1="420" y1="140" x2="690" y2="140" stroke="#c2c8d2" stroke-width="1.2"/>
+  <line x1="555" y1="134" x2="555" y2="146" stroke="#d4d9e2" stroke-width="1"/>
+  <rect x="528" y="135" width="61" height="10" fill="#3b45b8" fill-opacity="0.18"/>
+  <line x1="528" y1="131" x2="528" y2="149" stroke="#d9820b" stroke-width="2.4"/>
+  <line x1="589" y1="131" x2="589" y2="149" stroke="#1f9d6b" stroke-width="2.4"/>
+
+  <!-- ============ row l=2 (mid) ============ -->
+  <text x="40" y="219" font-size="15" font-weight="700" fill="#1f2430">&#8467; = 2</text>
+  <text x="40" y="237" font-size="12.5" fill="#3a4150">P&#8322; &#8722; P&#8321;</text>
+  <text x="40" y="253" font-size="11" fill="#8a92a1">mid</text>
+  <rect x="255" y="197" width="40" height="56" fill="#dfe7ff" fill-opacity="0.5"/>
+  <line x1="175" y1="225" x2="375" y2="225" stroke="#e4e7ee" stroke-width="1"/>
+  <path fill="none" stroke="#3b45b8" stroke-width="2.5" d="M175,225 Q197,205 219,225 T263,225 T307,225 T351,225 L375,225"/>
+  <line x1="420" y1="225" x2="690" y2="225" stroke="#c2c8d2" stroke-width="1.2"/>
+  <line x1="555" y1="219" x2="555" y2="231" stroke="#d4d9e2" stroke-width="1"/>
+  <rect x="508" y="220" width="101" height="10" fill="#3b45b8" fill-opacity="0.18"/>
+  <line x1="508" y1="216" x2="508" y2="234" stroke="#d9820b" stroke-width="2.4"/>
+  <line x1="609" y1="216" x2="609" y2="234" stroke="#1f9d6b" stroke-width="2.4"/>
+
+  <!-- ============ row l=3 (fine) ============ -->
+  <text x="40" y="304" font-size="15" font-weight="700" fill="#1f2430">&#8467; = 3</text>
+  <text x="40" y="322" font-size="12.5" fill="#3a4150">P&#8323; &#8722; P&#8322;</text>
+  <text x="40" y="338" font-size="11" fill="#8a92a1">fine (P&#8323; = raw g)</text>
+  <rect x="255" y="282" width="40" height="56" fill="#dfe7ff" fill-opacity="0.5"/>
+  <line x1="175" y1="310" x2="375" y2="310" stroke="#e4e7ee" stroke-width="1"/>
+  <path fill="none" stroke="#3b45b8" stroke-width="2.5" stroke-linejoin="round" d="M175,310 L263,310 L275,280 L287,310 L375,310"/>
+  <line x1="420" y1="310" x2="690" y2="310" stroke="#c2c8d2" stroke-width="1.2"/>
+  <line x1="555" y1="304" x2="555" y2="316" stroke="#d4d9e2" stroke-width="1"/>
+  <rect x="555" y="305" width="121" height="10" fill="#3b45b8" fill-opacity="0.18"/>
+  <line x1="555" y1="301" x2="555" y2="319" stroke="#d9820b" stroke-width="2.4"/>
+  <line x1="676" y1="301" x2="676" y2="319" stroke="#1f9d6b" stroke-width="2.4"/>
+
+  <!-- shared axis labels under bottom row -->
+  <g font-size="10" fill="#8a92a1" text-anchor="middle">
+    <text x="420" y="336">&#8722;1</text>
+    <text x="555" y="336">0</text>
+    <text x="690" y="336">+1</text>
+  </g>
+
+  <text x="380" y="372" font-size="11.5" fill="#8a92a1" text-anchor="middle">coarse bands see broad, gentle IR variation; fine bands see sharp IR edges &#8212; so each colour band is gated at its own scale.</text>
+</svg>

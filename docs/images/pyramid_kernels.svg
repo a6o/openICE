@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 306" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <rect x="8" y="8" width="704" height="290" rx="14" fill="#ffffff" stroke="#e4e7ee"/>
+
+  <text x="36" y="40" font-size="20" font-weight="700" fill="#1f2430">Kernels</text>
+
+  <g transform="translate(0,-52)">
+  <!-- ===================== l=0 : 9-octagon ===================== -->
+  <g fill="#dfe7ff">
+    <rect x="80"  y="138" width="80"  height="16"/>
+    <rect x="64"  y="154" width="112" height="16"/>
+    <rect x="48"  y="170" width="144" height="16"/>
+    <rect x="48"  y="186" width="144" height="16"/>
+    <rect x="48"  y="202" width="144" height="16"/>
+    <rect x="48"  y="218" width="144" height="16"/>
+    <rect x="48"  y="234" width="144" height="16"/>
+    <rect x="64"  y="250" width="112" height="16"/>
+    <rect x="80"  y="266" width="80"  height="16"/>
+  </g>
+  <path fill="none" stroke="#cdd5e4" stroke-width="0.8"
+        d="M48 138V282M64 138V282M80 138V282M96 138V282M112 138V282M128 138V282M144 138V282M160 138V282M176 138V282M192 138V282M48 138H192M48 154H192M48 170H192M48 186H192M48 202H192M48 218H192M48 234H192M48 250H192M48 266H192M48 282H192"/>
+  <g font-size="8.5" fill="#9aa2b1" text-anchor="middle" font-family="'Cascadia Code','Consolas',monospace">
+    <text x="88" y="149">1</text><text x="104" y="149">1</text><text x="120" y="149">1</text><text x="136" y="149">1</text><text x="152" y="149">1</text>
+    <text x="72" y="165">1</text><text x="88" y="165">1</text><text x="104" y="165">1</text><text x="120" y="165">1</text><text x="136" y="165">1</text><text x="152" y="165">1</text><text x="168" y="165">1</text>
+    <text x="56" y="181">1</text><text x="72" y="181">1</text><text x="88" y="181">1</text><text x="104" y="181">1</text><text x="120" y="181">1</text><text x="136" y="181">1</text><text x="152" y="181">1</text><text x="168" y="181">1</text><text x="184" y="181">1</text>
+    <text x="56" y="197">1</text><text x="72" y="197">1</text><text x="88" y="197">1</text><text x="104" y="197">1</text><text x="120" y="197">1</text><text x="136" y="197">1</text><text x="152" y="197">1</text><text x="168" y="197">1</text><text x="184" y="197">1</text>
+    <text x="56" y="213">1</text><text x="72" y="213">1</text><text x="88" y="213">1</text><text x="104" y="213">1</text><text x="120" y="213">1</text><text x="136" y="213">1</text><text x="152" y="213">1</text><text x="168" y="213">1</text><text x="184" y="213">1</text>
+    <text x="56" y="229">1</text><text x="72" y="229">1</text><text x="88" y="229">1</text><text x="104" y="229">1</text><text x="120" y="229">1</text><text x="136" y="229">1</text><text x="152" y="229">1</text><text x="168" y="229">1</text><text x="184" y="229">1</text>
+    <text x="56" y="245">1</text><text x="72" y="245">1</text><text x="88" y="245">1</text><text x="104" y="245">1</text><text x="120" y="245">1</text><text x="136" y="245">1</text><text x="152" y="245">1</text><text x="168" y="245">1</text><text x="184" y="245">1</text>
+    <text x="72" y="261">1</text><text x="88" y="261">1</text><text x="104" y="261">1</text><text x="120" y="261">1</text><text x="136" y="261">1</text><text x="152" y="261">1</text><text x="168" y="261">1</text>
+    <text x="88" y="277">1</text><text x="104" y="277">1</text><text x="120" y="277">1</text><text x="136" y="277">1</text><text x="152" y="277">1</text>
+  </g>
+  <g font-size="8.5" fill="#c9cfdb" text-anchor="middle" font-family="'Cascadia Code','Consolas',monospace">
+    <text x="56" y="149">0</text><text x="72" y="149">0</text><text x="168" y="149">0</text><text x="184" y="149">0</text>
+    <text x="56" y="165">0</text><text x="184" y="165">0</text>
+    <text x="56" y="261">0</text><text x="184" y="261">0</text>
+    <text x="56" y="277">0</text><text x="72" y="277">0</text><text x="168" y="277">0</text><text x="184" y="277">0</text>
+  </g>
+  <rect x="48" y="138" width="144" height="144" fill="none" stroke="#b9c8f0" stroke-width="1.4"/>
+  <rect x="112" y="202" width="16" height="16" fill="none" stroke="#3b45b8" stroke-width="1.6"/>
+
+  <!-- ===================== l=1 : 5-octagon ===================== -->
+  <g fill="#dfe7ff">
+    <rect x="296" y="170" width="48" height="16"/>
+    <rect x="280" y="186" width="80" height="16"/>
+    <rect x="280" y="202" width="80" height="16"/>
+    <rect x="280" y="218" width="80" height="16"/>
+    <rect x="296" y="234" width="48" height="16"/>
+  </g>
+  <path fill="none" stroke="#cdd5e4" stroke-width="0.8"
+        d="M280 170V250M296 170V250M312 170V250M328 170V250M344 170V250M360 170V250M280 170H360M280 186H360M280 202H360M280 218H360M280 234H360M280 250H360"/>
+  <g font-size="9" fill="#9aa2b1" text-anchor="middle" font-family="'Cascadia Code','Consolas',monospace">
+    <text x="304" y="181">1</text><text x="320" y="181">1</text><text x="336" y="181">1</text>
+    <text x="288" y="197">1</text><text x="304" y="197">1</text><text x="320" y="197">1</text><text x="336" y="197">1</text><text x="352" y="197">1</text>
+    <text x="288" y="213">1</text><text x="304" y="213">1</text><text x="320" y="213">1</text><text x="336" y="213">1</text><text x="352" y="213">1</text>
+    <text x="288" y="229">1</text><text x="304" y="229">1</text><text x="320" y="229">1</text><text x="336" y="229">1</text><text x="352" y="229">1</text>
+    <text x="304" y="245">1</text><text x="320" y="245">1</text><text x="336" y="245">1</text>
+  </g>
+  <g font-size="9" fill="#c9cfdb" text-anchor="middle" font-family="'Cascadia Code','Consolas',monospace">
+    <text x="288" y="181">0</text><text x="352" y="181">0</text>
+    <text x="288" y="245">0</text><text x="352" y="245">0</text>
+  </g>
+  <rect x="280" y="170" width="80" height="80" fill="none" stroke="#b9c8f0" stroke-width="1.4"/>
+  <rect x="312" y="202" width="16" height="16" fill="none" stroke="#3b45b8" stroke-width="1.6"/>
+
+  <!-- ===================== l=2 : 3x3 binomial tent ===================== -->
+  <g stroke="#cdd5e4" stroke-width="0.8">
+    <rect x="446" y="186" width="16" height="16" fill="#eef2ff"/><rect x="462" y="186" width="16" height="16" fill="#d7e3ff"/><rect x="478" y="186" width="16" height="16" fill="#eef2ff"/>
+    <rect x="446" y="202" width="16" height="16" fill="#d7e3ff"/><rect x="462" y="202" width="16" height="16" fill="#b3c4ef"/><rect x="478" y="202" width="16" height="16" fill="#d7e3ff"/>
+    <rect x="446" y="218" width="16" height="16" fill="#eef2ff"/><rect x="462" y="218" width="16" height="16" fill="#d7e3ff"/><rect x="478" y="218" width="16" height="16" fill="#eef2ff"/>
+  </g>
+  <g font-size="9.5" fill="#3b45b8" text-anchor="middle" font-family="'Cascadia Code','Consolas',monospace">
+    <text x="454" y="197">1</text><text x="470" y="197">2</text><text x="486" y="197">1</text>
+    <text x="454" y="213">2</text><text x="470" y="213">4</text><text x="486" y="213">2</text>
+    <text x="454" y="229">1</text><text x="470" y="229">2</text><text x="486" y="229">1</text>
+  </g>
+  <rect x="446" y="186" width="48" height="48" fill="none" stroke="#b9c8f0" stroke-width="1.4"/>
+  <rect x="462" y="202" width="16" height="16" fill="none" stroke="#3b45b8" stroke-width="1.6"/>
+
+  <!-- ===================== l=3 : 1x1 ===================== -->
+  <rect x="582" y="202" width="16" height="16" fill="#dfe7ff" stroke="#b9c8f0" stroke-width="1.4"/>
+  <text x="590" y="213" font-size="9.5" fill="#3b45b8" text-anchor="middle" font-family="'Cascadia Code','Consolas',monospace">1</text>
+  <rect x="582" y="202" width="16" height="16" fill="none" stroke="#3b45b8" stroke-width="1.6"/>
+
+  <!-- ===================== captions ===================== -->
+  <g text-anchor="middle">
+    <text x="120" y="300" font-size="12.5" font-weight="600" fill="#1f2430">&#8467; = 0</text>
+    <text x="120" y="316" font-size="12" fill="#1f2430">9-octagon</text>
+    <text x="120" y="332" font-size="11" fill="#6b7280">normalize by 1/69</text>
+
+    <text x="320" y="300" font-size="12.5" font-weight="600" fill="#1f2430">&#8467; = 1</text>
+    <text x="320" y="316" font-size="12" fill="#1f2430">5-octagon</text>
+    <text x="320" y="332" font-size="11" fill="#6b7280">normalize by 1/21</text>
+
+    <text x="470" y="300" font-size="12.5" font-weight="600" fill="#1f2430">&#8467; = 2</text>
+    <text x="470" y="316" font-size="12" fill="#1f2430">3&#215;3 tent</text>
+    <text x="470" y="332" font-size="11" fill="#6b7280">normalize by 1/16</text>
+
+    <text x="590" y="300" font-size="12.5" font-weight="600" fill="#1f2430">&#8467; = 3</text>
+    <text x="590" y="316" font-size="12" fill="#1f2430">1&#215;1</text>
+  </g>
+  </g>
+</svg>

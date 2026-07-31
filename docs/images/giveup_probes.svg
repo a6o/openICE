@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <rect x="8" y="8" width="624" height="344" rx="14" fill="#ffffff" stroke="#e4e7ee"/>
+
+  <text x="36" y="40" font-size="20" font-weight="700" fill="#1f2430">Give-up probes</text>
+
+  <!-- grid background + lines (11 x 11 cells of gate g; the pixel + its 9x9 neighbourhood) -->
+  <rect x="70" y="72" width="242" height="242" fill="#f5f7fb"/>
+  <path fill="none" stroke="#e4e7ee" stroke-width="1"
+        d="M70 72V314M92 72V314M114 72V314M136 72V314M158 72V314M180 72V314M202 72V314M224 72V314M246 72V314M268 72V314M290 72V314M312 72V314M70 72H312M70 94H312M70 116H312M70 138H312M70 160H312M70 182H312M70 204H312M70 226H312M70 248H312M70 270H312M70 292H312M70 314H312"/>
+
+  <!-- two vertical probes (9 tall), 4 columns to each side of the pixel -->
+  <rect x="92"  y="94" width="22" height="198" rx="4" fill="#3b45b8" fill-opacity="0.13" stroke="#3b45b8" stroke-width="2"/>
+  <rect x="268" y="94" width="22" height="198" rx="4" fill="#3b45b8" fill-opacity="0.13" stroke="#3b45b8" stroke-width="2"/>
+
+  <!-- two horizontal probes (9 wide), 4 rows above and below the pixel -->
+  <rect x="92" y="94"  width="198" height="22" rx="4" fill="#1f9d6b" fill-opacity="0.14" stroke="#1f9d6b" stroke-width="2"/>
+  <rect x="92" y="270" width="198" height="22" rx="4" fill="#1f9d6b" fill-opacity="0.14" stroke="#1f9d6b" stroke-width="2"/>
+
+  <!-- the pixel being decided (centre of the 9x9 box) -->
+  <rect x="180" y="182" width="22" height="22" rx="3" fill="#ffffff" stroke="#d64545" stroke-width="2.5"/>
+  <circle cx="191" cy="193" r="2.4" fill="#d64545"/>
+
+  <!-- 4-px offset marker (pixel centre -> right probe centre) -->
+  <line x1="196" y1="160" x2="274" y2="160" stroke="#9aa2b1" stroke-width="1"/>
+  <path d="M202,157 L196,160 L202,163" fill="none" stroke="#9aa2b1" stroke-width="1.1"/>
+  <path d="M273,157 L279,160 L273,163" fill="none" stroke="#9aa2b1" stroke-width="1.1"/>
+  <text x="237" y="154" font-size="10.5" fill="#8a92a1" text-anchor="middle">4 px</text>
+
+  <!-- legend -->
+  <rect x="384" y="100" width="20" height="20" rx="3" fill="#3b45b8" fill-opacity="0.13" stroke="#3b45b8" stroke-width="2"/>
+  <text x="414" y="108" font-size="13" font-weight="600" fill="#1f2430">vertical probe</text>
+  <text x="414" y="125" font-size="11" fill="#6b7280">9 gate samples down a column,</text>
+  <text x="414" y="139" font-size="11" fill="#6b7280">4 px to the left and right</text>
+
+  <rect x="384" y="162" width="20" height="20" rx="3" fill="#1f9d6b" fill-opacity="0.14" stroke="#1f9d6b" stroke-width="2"/>
+  <text x="414" y="170" font-size="13" font-weight="600" fill="#1f2430">horizontal probe</text>
+  <text x="414" y="187" font-size="11" fill="#6b7280">9 gate samples across a row,</text>
+  <text x="414" y="201" font-size="11" fill="#6b7280">4 rows above and below</text>
+
+  <rect x="384" y="224" width="20" height="20" rx="3" fill="#ffffff" stroke="#d64545" stroke-width="2.5"/>
+  <circle cx="394" cy="234" r="2.4" fill="#d64545"/>
+  <text x="414" y="232" font-size="13" font-weight="600" fill="#1f2430">the pixel being decided</text>
+
+  <!-- rule -->
+  <text x="191" y="340" font-size="12" fill="#4a5160" text-anchor="middle">the four probes are the edges of a 9&#215;9 box centred on the pixel</text>
+</svg>
