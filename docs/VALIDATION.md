@@ -3,7 +3,7 @@
 Here we show visual and quantitative comparisons of openICE vs Nikon Scan's Digital ICE. Overall, they are not byte-exact, but **visually indistinguishable**.
 
 ## Speed
-On a single Dell XPS 9640 laptop (Intel Core Ultra 7 155H, 32G memory) it takes about 16 seconds to run openICE on a single image (average of 10 runs on a 3946×5959 frame, end-to-end including DNG read/write).
+On a single Dell XPS 9640 laptop (Intel Core Ultra 7 155H, 32G memory) it takes about 8 seconds to run openICE on a single 35mm image (average of 10 runs on a 3946×5959 frame, end-to-end including DNG read/write), or 29.6 seconds on a 6x9 image (8964x13176).
 
 ## Visual Results
 ### Input Image
