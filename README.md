@@ -16,6 +16,10 @@ If you want a quick, simple tool for ICE, download `openice_gui.exe` from the **
 
 ![](docs/images/gui.png)
 
+### Windows SmartScreen warning
+
+openICE is open-source but not code-signed, so the first time you run it Windows
+may show a blue **"Windows protected your PC"** box. This is the *unknown-publisher* warning. To run it: click **More info**, then **Run anyway**.
 
 ## How to Use - CLI
 
